@@ -12,8 +12,6 @@
 
 #include "./includes/fractol.h"
 
-#include "./includes/fractol.h"
-
 void	my_mlx_pixel_put(t_fractol *fractol, int x, int y, int color)
 {
 	char	*dst;
