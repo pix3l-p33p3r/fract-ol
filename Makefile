@@ -1,16 +1,13 @@
 NAME = fractol
-# 	* command to compile our functions
-CFLAGS	= -g3 -Wall -Werror -Wextra 
-CFLAGS += -fsanitize=address
+
+CFLAGS	= -Wall -Werror -Wextra 
+CFLAGS += -O3 -fsanitize=address -g3
 CC	= cc
-# 	* functions that must be compiled through our makefile
+
 SRCS    = main.c 
 
-# 	* create our executable file
-# 	* replace all files with .c extension to .o extension
+
 OBJ 	= $(SRCS:.c=.o)
-
-
 
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
@@ -21,7 +18,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
-	rm -f $(OBJS) $(BNS_OBJS)
+	rm -f $(OBJ) $(BNS_OBJ)
 
 fclean: clean
 	rm -f $(NAME)

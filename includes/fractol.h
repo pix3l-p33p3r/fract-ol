@@ -26,6 +26,7 @@
 # include <mlx.h>
 # include <math.h>
 # include <float.h>
+# include <time.h>
 # include "structs.h"
 
 #endif
