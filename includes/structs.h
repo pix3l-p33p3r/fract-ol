@@ -6,14 +6,12 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:43:13 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/20 20:53:50 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:25:13 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
-# include <unistd.h>
 
 # define COLOR_COUNT 20
 # define MAX_ITER 1000
