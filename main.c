@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:28:43 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/20 20:53:36 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:52:11 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,17 @@ int	in_mandelbrot(long double x, long double y)
 	return (mandel.iter);
 }
 
-int	get_color(int i)
-{
-	const int	colors[20] = {0x000000, 0x000033, 0x000066, 0x000099, 0x0000cc,
-	0x0000ff, 0x3300ff, 0x6600ff, 0x9900ff, 0xcc00ff,
-	0xff00ff, 0xff00cc, 0xff0099, 0xff0066, 0xff0033,
-	0xff0000, 0xff3300, 0xff6600, 0xff9900, 0xffff00};
+int	get_color(int i) {
+	const int colors[45] = {
+	0x000020, 0x000040, 0x000060, 0x000080, 0x0000A0,
+	0x0000C0, 0x0000E0, 0x0000FF, 0x1A1AFF, 0x3F3FFF,
+	0x5F5FFF, 0x8F8FFF, 0xAFAFFF, 0xCFCFFF, 0xEFEFFF,
+	0xFFFFFF, 0xFFEFEF, 0xFFCFCF, 0xFFAFAF, 0xFF8F8F,
+	0xFF6F6F, 0xFF3F3F, 0xFF1A1A, 0xFF0000, 0xE50000,
+	0xCC0000, 0xB20000, 0x990000, 0x800000, 0x660000,
+	0x4C0000, 0x330000, 0x190000, 0x000000, 0xFF00FF,
+	0x00FF00, 0x0000FF, 0xFFFF00, 0x00FFFF, 0xFF7F00,
+	0xFF5F00, 0xFF3F00, 0xFF1F00, 0xFF0000};
 	return colors[i];
 }
 
@@ -68,7 +73,7 @@ int	render(t_fractol *fractol)
 			render.y = (((-(render.b) / 1000.0) * (fractol->plan.y_max - fractol->plan.y_min)) + fractol->plan.y_max);
 			render.i = in_mandelbrot(render.x, render.y);
 			if (render.i < MAX_ITER)
-				my_mlx_pixel_put(fractol, render.a, render.b, get_color(render.i % 20));
+				my_mlx_pixel_put(fractol, render.a, render.b, get_color(render.i % 45));
 			else
 				my_mlx_pixel_put(fractol, render.a, render.b, 0);
 			render.b++;
@@ -116,13 +121,18 @@ int	mouse_press(int botton, int x, int y, t_fractol *fractol)
 	return (0);
 }
 
-int	botton_press(int botton, int x, int y, t_fractol *fractol)
+int	close_window(t_fractol *fractol)
+{
+	mlx_destroy_window(fractol->mlx, fractol->win);
+	exit(0);
+	//(void)fractol;
+	return (0);
+}
+
+int	botton_press(int botton, t_fractol *fractol)
 {
 	if (botton == 53)
-		exit(0);
-	(void)x;
-	(void)y;
-	(void)fractol;
+		close_window(fractol);
 	return (0);
 }
 
@@ -141,6 +151,7 @@ int	main(void)
 	init_cords(fractol);
 	mlx_hook(fractol->win, 4, 0, mouse_press, fractol);
 	mlx_hook(fractol->win, 2, 0, botton_press, fractol);
+	mlx_hook(fractol->win, 17, 0, close_window, fractol);
 	mlx_loop_hook(fractol->mlx, render, fractol);
 	mlx_loop(fractol->mlx);
 }

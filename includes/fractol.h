@@ -14,19 +14,9 @@
 # define FRACTOL_H
 
 # include <unistd.h>
-# include <stdio.h>
-# include <string.h>
 # include <stdlib.h>
-# include <fcntl.h>
-# include <limits.h>
-# include <ctype.h>
-# include <stddef.h>
-# include <signal.h>
-# include <stdbool.h>
 # include <mlx.h>
 # include <math.h>
-# include <float.h>
-# include <time.h>
 # include "structs.h"
 
 #endif
