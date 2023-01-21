@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:28:43 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/19 19:55:45 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:53:36 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int	render(t_fractol *fractol)
 			&fractol->image->endian);
 	while (render.a < 1000)
 	{
-		render.x = (((render.a / 1000.0) * 6) - 3);
+		render.x = (((render.a / 1000.0) * (fractol->plan.x_max - fractol->plan.x_min)) + fractol->plan.x_min);
 		render.b = 0;
 		while (render.b < 1000)
 		{
-			render.y = (((-(render.b) / 1000.0) * 6) + 3);
+			render.y = (((-(render.b) / 1000.0) * (fractol->plan.y_max - fractol->plan.y_min)) + fractol->plan.y_max);
 			render.i = in_mandelbrot(render.x, render.y);
 			if (render.i < MAX_ITER)
 				my_mlx_pixel_put(fractol, render.a, render.b, get_color(render.i % 20));
@@ -80,20 +80,50 @@ int	render(t_fractol *fractol)
 	return (0);
 }
 
-unsigned int	*inter(void)
+void	init_cords(t_fractol *fractol)
 {
-	unsigned int    *color_palette;
+	fractol->plan.x_min = -3.0;
+	fractol->plan.x_max = 3.0;
+	fractol->plan.y_min = -3.0;
+	fractol->plan.y_max = 3.0;
+}
 
-	color_palette = malloc(sizeof(unsigned int) * COLOR_COUNT);
-	int	i = 0;
-	int	j = 0x00000000;
-	while (i < COLOR_COUNT)
-	{
-		color_palette[i] = j;
-		j += 0x00FF0000;
-		i++;
-	}
-	return (color_palette);
+void	ft_zoom(int botton, int x, int y, t_fractol *fractol)
+{
+	long double	x_cord;
+	long double	y_cord;
+	long double	zoom;
+	long double tmp[2];
+
+	zoom = 2.0;
+	if (botton == 4)
+		zoom = 0.5;
+	tmp[0] = fractol->plan.x_max - fractol->plan.x_min;
+	tmp[1] = fractol->plan.y_max - fractol->plan.y_min;
+	x_cord = (((x / 1000.0) * (fractol->plan.x_max - fractol->plan.x_min)) + fractol->plan.x_min);
+	y_cord = (((-(y) / 1000.0) * (fractol->plan.y_max - fractol->plan.y_min)) + fractol->plan.y_max);
+	fractol->plan.x_max = x_cord + ((fractol->plan.x_max - x_cord) * zoom);
+	fractol->plan.x_min = fractol->plan.x_max - (tmp[0] * zoom);
+	fractol->plan.y_max = y_cord + ((fractol->plan.y_max - y_cord) * zoom);
+	fractol->plan.y_min = fractol->plan.y_max - (tmp[1] * zoom);
+}
+
+int	mouse_press(int botton, int x, int y, t_fractol *fractol)
+{
+	// TODO: implement zooming for mandelbrot set
+	if (botton == 4 || botton == 5)
+		ft_zoom(botton, x, y, fractol);
+	return (0);
+}
+
+int	botton_press(int botton, int x, int y, t_fractol *fractol)
+{
+	if (botton == 53)
+		exit(0);
+	(void)x;
+	(void)y;
+	(void)fractol;
+	return (0);
 }
 
 int	main(void)
@@ -108,10 +138,9 @@ int	main(void)
 	fractol->image->img = mlx_new_image(fractol->mlx, 1000, 1000);
 	fractol->image->addr = mlx_get_data_addr(fractol->image->img, &fractol->image->bits_per_pixel, &fractol->image->line_length,
 								&fractol->image->endian);
-
-
-	fractol->color_palette = inter();
-
+	init_cords(fractol);
+	mlx_hook(fractol->win, 4, 0, mouse_press, fractol);
+	mlx_hook(fractol->win, 2, 0, botton_press, fractol);
 	mlx_loop_hook(fractol->mlx, render, fractol);
 	mlx_loop(fractol->mlx);
 }

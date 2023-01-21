@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:43:13 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/19 19:54:15 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:53:50 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 
 # define COLOR_COUNT 20
-# define MAX_ITER 100
+# define MAX_ITER 1000
 
 typedef struct s_image {
 	void	*img;
@@ -26,11 +26,18 @@ typedef struct s_image {
 	int		endian;
 }				t_image;
 
+typedef struct s_plan  {
+	long double	x_min;
+	long double	y_min;
+	long double	x_max;
+	long double	y_max;
+}	t_plan;
+
 typedef struct s_fractol {
 	void			*mlx;
 	void			*win;
-	unsigned int	*color_palette;
 	t_image			*image;
+	t_plan			plan;
 }	t_fractol;
 
 typedef struct s_render {
