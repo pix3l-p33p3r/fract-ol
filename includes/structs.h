@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:43:13 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 09:29:20 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/23 10:09:03 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_image {
 	int		endian;
 }				t_image;
 
-typedef struct s_plan  {
+typedef struct s_plan {
 	long double	x_min;
 	long double	y_min;
 	long double	x_max;
@@ -60,6 +60,15 @@ typedef struct s_julia {
 	long double	tmp;
 	int			iter;
 }				t_julia;
+
+typedef struct s_burningship {
+	long double	re;
+	long double	im;
+	long double	re_factor;
+	long double	im_factor;
+	long double	tmp;
+	int			iter;
+}				t_burningship;
 
 typedef struct s_zoom {
 	long double	x_cord;

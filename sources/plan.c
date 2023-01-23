@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                         :+:      :+:    :+:   */
+/*   plan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/31 14:35:30 by elel-yak          #+#    #+#             */
-/*   Updated: 2022/12/31 14:37:59 by elel-yak         ###   ########.fr       */
+/*   Created: 2023/01/23 09:56:23 by elel-yak          #+#    #+#             */
+/*   Updated: 2023/01/23 09:56:31 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "../includes/fractol.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <mlx.h>
-# include <math.h>
-# include "structs.h"
-
-int	mandelbrot(long double x, long double y);
-int	get_color(int i);
-
-#endif
+void	init_cords(t_fractol *fractol)
+{
+	fractol->plan.x_min = -3.0;
+	fractol->plan.x_max = 3.0;
+	fractol->plan.y_min = -3.0;
+	fractol->plan.y_max = 3.0;
+}

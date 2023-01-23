@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/31 14:35:30 by elel-yak          #+#    #+#             */
-/*   Updated: 2022/12/31 14:37:59 by elel-yak         ###   ########.fr       */
+/*   Created: 2023/01/23 10:10:11 by elel-yak          #+#    #+#             */
+/*   Updated: 2023/01/23 10:12:03 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "../includes/fractol.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <mlx.h>
-# include <math.h>
-# include "structs.h"
+void	ft_putstr(char *str)
+{
+	int	i;
 
-int	mandelbrot(long double x, long double y);
-int	get_color(int i);
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+}
 
-#endif
+ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}

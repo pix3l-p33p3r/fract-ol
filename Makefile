@@ -4,7 +4,7 @@ CFLAGS	= -Wall -Werror -Wextra
 CFLAGS += -O3 -g3 -fsanitize=address
 CC	= cc
 
-SRCS    = main.c 
+SRCS    = sources/main.c 
 
 
 OBJ 	= $(SRCS:.c=.o)
