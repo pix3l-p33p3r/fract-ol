@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 10:07:14 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 12:39:53 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/23 13:23:30 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,22 @@
 
 int	mandelbrot_4(long double x, long double y)
 {
-	t_mandelbrot_4	mandelbrot_4;
+	t_mandelbrot_4	mandel;
 
-	mandelbrot_4.re_factor = x;
-	mandelbrot_4.im_factor = y;
-	mandelbrot_4.iter = 0;
-	while (pow(mandelbrot_4.re_factor, 4) + pow(mandelbrot_4.im_factor, 4) < 4
-		&& mandelbrot_4.iter < MAX_ITER)
+	mandel.re = 0;
+	mandel.im = 0;
+	mandel.re_factor = x;
+	mandel.im_factor = y;
+	mandel.iter = 0;
+	while ((pow(mandel.re, 4) + pow(mandel.im, 4)) < 4
+		&& mandel.iter < MAX_ITER)
 	{
-		mandelbrot_4.tmp = pow(mandelbrot_4.re_factor, 4) - 6
-			* pow(mandelbrot_4.re_factor, 2)
-			* pow(mandelbrot_4.im_factor, 2) + pow(mandelbrot_4.im_factor, 4)
-			+ x;
-		mandelbrot_4.im_factor = 4 * mandelbrot_4.re_factor
-			* mandelbrot_4.im_factor * (pow(mandelbrot_4.re_factor, 2)
-				- pow(mandelbrot_4.im_factor, 2)) + y;
-		mandelbrot_4.re_factor = mandelbrot_4.tmp;
-		mandelbrot_4.iter++;
+		mandel.tmp = pow(mandel.re, 4) - 6 * pow(mandel.re, 2)
+			* pow(mandel.im, 2) + pow(mandel.im, 4) + mandel.re_factor;
+		mandel.im = 4 * pow(mandel.re, 3) * mandel.im - 4 * mandel.re
+			* pow(mandel.im, 3) + mandel.im_factor;
+		mandel.re = mandel.tmp;
+		mandel.iter++;
 	}
-	return (mandelbrot_4.iter);
+	return (mandel.iter);
 }

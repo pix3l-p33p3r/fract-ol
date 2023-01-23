@@ -6,11 +6,12 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 09:57:01 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 12:43:00 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/23 13:22:22 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+# include <stdio.h>
 
 void	init_render(t_fractol *fractol)
 {

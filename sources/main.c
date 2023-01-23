@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:28:43 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 12:41:33 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/23 13:26:16 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ int	pars(int argc, char **argv, t_fractol *fractol)
 {
 	if (argc != 2)
 	{
-		ft_putstr("usage: ./fractol [julia, mandelbrot, mandelbrot_4]");
-		return (0);
+		ft_putstr("usage: ./fractol [julia, mandelbrot, mandelbrot_4]\n");
+		exit(1);
 	}
 	if (ft_strcmp(argv[1], "julia") == 0)
 		fractol->func = 1;
 	else if (ft_strcmp(argv[1], "mandelbrot") == 0)
 		fractol->func = 2;
-	else if (ft_strcmp(argv[1], "mandelbrot_4") == 0)
+	else if (ft_strcmp(argv[1], "4th_mandel") == 0)
 		fractol->func = 3;
 	else
 	{
-		ft_putstr("usage: ./fractol [julia, mandelbrot, mandelbrot_4]");
+		ft_putstr("usage: ./fractol [julia, mandelbrot, mandelbrot_4]\n");
 		exit(1);
 	}
 	return (0);
