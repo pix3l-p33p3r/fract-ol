@@ -6,29 +6,29 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:28:43 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 10:06:45 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:41:33 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int	pars(argc, argv)
+int	pars(int argc, char **argv, t_fractol *fractol)
 {
 	if (argc != 2)
 	{
-		ft_putstr("usage: ./fractol [julia, mandelbrot, burningship]");
+		ft_putstr("usage: ./fractol [julia, mandelbrot, mandelbrot_4]");
 		return (0);
 	}
 	if (ft_strcmp(argv[1], "julia") == 0)
-		julia();
+		fractol->func = 1;
 	else if (ft_strcmp(argv[1], "mandelbrot") == 0)
-		mandelbrot();
-	else if (ft_strcmp(argv[1], "burningship") == 0)
-		burningship();
+		fractol->func = 2;
+	else if (ft_strcmp(argv[1], "mandelbrot_4") == 0)
+		fractol->func = 3;
 	else
 	{
-		ft_putstr("usage: ./fractol [julia, mandelbrot, burningship]");
-		return (0);
+		ft_putstr("usage: ./fractol [julia, mandelbrot, mandelbrot_4]");
+		exit(1);
 	}
 	return (0);
 }
@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 	t_fractol	*fractol;
 
 	fractol = malloc(sizeof(t_fractol));
+	pars(argc, argv, fractol);
 	fractol->image = malloc(sizeof(t_image));
 	fractol->mlx = mlx_init();
 	fractol->win = mlx_new_window(fractol->mlx, 1000, 1000, "fractol");

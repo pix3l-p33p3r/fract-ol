@@ -4,8 +4,17 @@ CFLAGS	= -Wall -Werror -Wextra
 CFLAGS += -O3 -g3 -fsanitize=address
 CC	= cc
 
-SRCS    = sources/main.c 
-
+SRCS    = sources/main.c \
+		sources/mandelbrot_4th.c \
+		sources/julia.c \
+		sources/mandelbrot.c \
+		sources/plan.c \
+		sources/zoom.c \
+		sources/utils.c \
+		sources/colors.c \
+		sources/render.c \
+		sources/put_pixel.c \
+		sources/events.c \
 
 OBJ 	= $(SRCS:.c=.o)
 
@@ -25,5 +34,3 @@ fclean: clean
 
 re:	fclean all
 
-run: re
-	./$(NAME)

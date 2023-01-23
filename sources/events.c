@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 09:45:29 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 09:51:01 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:38:41 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,20 @@ int	close_window(t_fractol *fractol)
 
 int	botton_press(int botton, t_fractol *fractol)
 {
-	if (botton == 123)
-		fractol->plan.x_min -= 0.1;
-	if (botton == 124)
-		fractol->plan.x_min += 0.1;
-	if (botton == 125)
-		fractol->plan.y_min += 0.1;
-	if (botton == 126)
-		fractol->plan.y_min -= 0.1;
-	if (botton == 69)
-		fractol->plan.x_max += 0.1;
-	if (botton == 78)
-		fractol->plan.x_max -= 0.1;
+	long double	g;
+
+	g = ((fractol->plan.x_max - fractol->plan.x_min) / 10.0)
+		* (-2.0 * (botton == 123 || botton == 125) + 1.0);
+	if (botton == 123 || botton == 124)
+	{
+		fractol->plan.x_min += g;
+		fractol->plan.x_max += g;
+	}
+	else if (botton == 125 || botton == 126)
+	{
+		fractol->plan.y_min += g;
+		fractol->plan.y_max += g;
+	}
 	if (botton == 53)
 		close_window(fractol);
 	return (0);

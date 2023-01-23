@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:43:13 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 10:09:03 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:37:13 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_plan {
 typedef struct s_fractol {
 	void			*mlx;
 	void			*win;
+	int				func;
 	t_image			*image;
 	t_plan			plan;
 }	t_fractol;
@@ -61,14 +62,14 @@ typedef struct s_julia {
 	int			iter;
 }				t_julia;
 
-typedef struct s_burningship {
+typedef struct s_mandelbrot_4 {
 	long double	re;
 	long double	im;
 	long double	re_factor;
 	long double	im_factor;
 	long double	tmp;
 	int			iter;
-}				t_burningship;
+}				t_mandelbrot_4;
 
 typedef struct s_zoom {
 	long double	x_cord;
