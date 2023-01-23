@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:43:13 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/21 17:52:41 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/23 09:22:26 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define STRUCTS_H
 
 # define COLOR_COUNT 20
-# define MAX_ITER 1024
+# define MAX_ITER 100
 
 typedef struct s_image {
 	void	*img;
@@ -54,5 +54,21 @@ typedef struct s_mandel {
 	long double	tmp;
 	int			iter;
 }				t_mandel;
+
+typedef struct s_julia {
+	long double	re_factor;
+	long double	im_factor;
+	long double	tmp;
+	int			iter;
+}				t_julia;
+
+typedef struct s_zoom {
+	long double	x_cord;
+	long double	y_cord;
+	long double	zoom;
+	long double	tmp0;
+	long double	tmp1;
+	long double	tmp2;
+}				t_zoom;
 
 #endif

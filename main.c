@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:28:43 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/21 17:52:11 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/23 09:26:40 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	my_mlx_pixel_put(t_fractol *fractol, int x, int y, int color)
 	*(unsigned int *) dst = color;
 }
 
-int	in_mandelbrot(long double x, long double y)
+int	mandelbrot(long double x, long double y)
 {
 	t_mandel mandel;
 
@@ -38,6 +38,23 @@ int	in_mandelbrot(long double x, long double y)
 		mandel.iter++;
 	}
 	return (mandel.iter);
+}
+
+int	julia(long double x, long double y)
+{
+	t_julia julia;
+
+	julia.re_factor = x;
+	julia.im_factor = y;
+	julia.iter = 0;
+	while (((pow(julia.re_factor, 2)) + (pow(julia.im_factor, 2))) < 4 && julia.iter < MAX_ITER)
+	{
+		julia.tmp = pow(julia.re_factor, 2) - pow(julia.im_factor, 2) + 0.0;
+		julia.im_factor = 2 * julia.re_factor * julia.im_factor - 0.8;
+		julia.re_factor = julia.tmp;
+		julia.iter++;
+	}
+	return (julia.iter);
 }
 
 int	get_color(int i) {
@@ -71,7 +88,7 @@ int	render(t_fractol *fractol)
 		while (render.b < 1000)
 		{
 			render.y = (((-(render.b) / 1000.0) * (fractol->plan.y_max - fractol->plan.y_min)) + fractol->plan.y_max);
-			render.i = in_mandelbrot(render.x, render.y);
+			render.i = mandelbrot(render.x, render.y);
 			if (render.i < MAX_ITER)
 				my_mlx_pixel_put(fractol, render.a, render.b, get_color(render.i % 45));
 			else
@@ -95,27 +112,23 @@ void	init_cords(t_fractol *fractol)
 
 void	ft_zoom(int botton, int x, int y, t_fractol *fractol)
 {
-	long double	x_cord;
-	long double	y_cord;
-	long double	zoom;
-	long double tmp[2];
+	t_zoom	zoom;
 
-	zoom = 2.0;
+	zoom.zoom = 2.0;
 	if (botton == 4)
-		zoom = 0.5;
-	tmp[0] = fractol->plan.x_max - fractol->plan.x_min;
-	tmp[1] = fractol->plan.y_max - fractol->plan.y_min;
-	x_cord = (((x / 1000.0) * (fractol->plan.x_max - fractol->plan.x_min)) + fractol->plan.x_min);
-	y_cord = (((-(y) / 1000.0) * (fractol->plan.y_max - fractol->plan.y_min)) + fractol->plan.y_max);
-	fractol->plan.x_max = x_cord + ((fractol->plan.x_max - x_cord) * zoom);
-	fractol->plan.x_min = fractol->plan.x_max - (tmp[0] * zoom);
-	fractol->plan.y_max = y_cord + ((fractol->plan.y_max - y_cord) * zoom);
-	fractol->plan.y_min = fractol->plan.y_max - (tmp[1] * zoom);
+		zoom.zoom = 0.5;
+	zoom.tmp0 = fractol->plan.x_max - fractol->plan.x_min;
+	zoom.tmp1 = fractol->plan.y_max - fractol->plan.y_min;
+	zoom.x_cord = (((x / 1000.0) * (fractol->plan.x_max - fractol->plan.x_min)) + fractol->plan.x_min);
+	zoom.y_cord = (((-(y) / 1000.0) * (fractol->plan.y_max - fractol->plan.y_min)) + fractol->plan.y_max);
+	fractol->plan.x_max = zoom.x_cord + ((fractol->plan.x_max - zoom.x_cord) * zoom.zoom);
+	fractol->plan.x_min = fractol->plan.x_max - (zoom.tmp0 * zoom.zoom);
+	fractol->plan.y_max = zoom.y_cord + ((fractol->plan.y_max - zoom.y_cord) * zoom.zoom);
+	fractol->plan.y_min = fractol->plan.y_max - (zoom.tmp1 * zoom.zoom);
 }
 
 int	mouse_press(int botton, int x, int y, t_fractol *fractol)
 {
-	// TODO: implement zooming for mandelbrot set
 	if (botton == 4 || botton == 5)
 		ft_zoom(botton, x, y, fractol);
 	return (0);
@@ -125,7 +138,6 @@ int	close_window(t_fractol *fractol)
 {
 	mlx_destroy_window(fractol->mlx, fractol->win);
 	exit(0);
-	//(void)fractol;
 	return (0);
 }
 
