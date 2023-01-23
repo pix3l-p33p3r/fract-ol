@@ -6,14 +6,13 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:43:13 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 09:22:26 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/23 09:29:20 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# define COLOR_COUNT 20
 # define MAX_ITER 100
 
 typedef struct s_image {

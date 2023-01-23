@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:28:43 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 09:26:40 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/23 09:29:31 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,6 @@ int	mandelbrot(long double x, long double y)
 		mandel.iter++;
 	}
 	return (mandel.iter);
-}
-
-int	julia(long double x, long double y)
-{
-	t_julia julia;
-
-	julia.re_factor = x;
-	julia.im_factor = y;
-	julia.iter = 0;
-	while (((pow(julia.re_factor, 2)) + (pow(julia.im_factor, 2))) < 4 && julia.iter < MAX_ITER)
-	{
-		julia.tmp = pow(julia.re_factor, 2) - pow(julia.im_factor, 2) + 0.0;
-		julia.im_factor = 2 * julia.re_factor * julia.im_factor - 0.8;
-		julia.re_factor = julia.tmp;
-		julia.iter++;
-	}
-	return (julia.iter);
 }
 
 int	get_color(int i) {
@@ -156,7 +139,7 @@ int	main(void)
 	fractol->image = malloc(sizeof(t_image));
 
 	fractol->mlx = mlx_init();
-	fractol->win = mlx_new_window(fractol->mlx, 1000, 1000, "Mandelbrot Set");
+	fractol->win = mlx_new_window(fractol->mlx, 1000, 1000, "fractol");
 	fractol->image->img = mlx_new_image(fractol->mlx, 1000, 1000);
 	fractol->image->addr = mlx_get_data_addr(fractol->image->img, &fractol->image->bits_per_pixel, &fractol->image->line_length,
 								&fractol->image->endian);
