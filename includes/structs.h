@@ -6,14 +6,14 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:43:13 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 12:37:13 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/25 22:24:44 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# define MAX_ITER 100
+# define MAX_ITER 256
 
 typedef struct s_image {
 	void	*img;
@@ -30,11 +30,19 @@ typedef struct s_plan {
 	long double	y_max;
 }	t_plan;
 
+typedef struct s_julia {
+	long double	re_factor;
+	long double	im_factor;
+	long double	tmp;
+	int			iter;
+}				t_julia;
+
 typedef struct s_fractol {
+	int				func;
 	void			*mlx;
 	void			*win;
-	int				func;
 	t_image			*image;
+	t_julia			julia;
 	t_plan			plan;
 }	t_fractol;
 
@@ -54,13 +62,6 @@ typedef struct s_mandel {
 	long double	tmp;
 	int			iter;
 }				t_mandel;
-
-typedef struct s_julia {
-	long double	re_factor;
-	long double	im_factor;
-	long double	tmp;
-	int			iter;
-}				t_julia;
 
 typedef struct s_mandelbrot_4 {
 	long double	re;

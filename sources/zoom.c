@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 09:50:30 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 09:52:51 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/25 22:34:26 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_zoom(int botton, int x, int y, t_fractol *fractol)
 
 	zoom.zoom = 2.0;
 	if (botton == 4)
-		zoom.zoom = 0.5;
+		zoom.zoom = 1 / 3.0;
 	zoom.tmp0 = fractol->plan.x_max - fractol->plan.x_min;
 	zoom.tmp1 = fractol->plan.y_max - fractol->plan.y_min;
 	zoom.x_cord = (((x / 1000.0) * (fractol->plan.x_max - fractol->plan.x_min))

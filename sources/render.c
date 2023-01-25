@@ -6,12 +6,11 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 09:57:01 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 13:22:22 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/25 22:23:23 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-# include <stdio.h>
 
 void	init_render(t_fractol *fractol)
 {
@@ -25,9 +24,9 @@ void	init_render(t_fractol *fractol)
 int	select_fractol(t_fractol *fractol, double x, double y)
 {
 	if (fractol->func == 1)
-		return (julia(x, y));
-	else if (fractol->func == 2)
 		return (mandelbrot(x, y));
+	else if (fractol->func == 2)
+		return (julia(fractol->julia, x, y));
 	else if (fractol->func == 3)
 		return (mandelbrot_4(x, y));
 	return (0);

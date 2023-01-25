@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:28:43 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 13:26:16 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/25 22:38:25 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 
 int	pars(int argc, char **argv, t_fractol *fractol)
 {
-	if (argc != 2)
+	if (argc != 2 && argc != 4)
 	{
-		ft_putstr("usage: ./fractol [julia, mandelbrot, mandelbrot_4]\n");
+		ft_putstr("usage: ./fractol [fractal name]\n"
+			"		Mandlebrot set : 1\n"
+			"		julia set : 2 [real constant(op)] [imaginary constant(op)]\n"
+			"		4th_mandel : 3\n");
 		exit(1);
 	}
-	if (ft_strcmp(argv[1], "julia") == 0)
+	if (ft_strcmp(argv[1], "1") == 0)
 		fractol->func = 1;
-	else if (ft_strcmp(argv[1], "mandelbrot") == 0)
+	else if (ft_strcmp(argv[1], "2") == 0)
 		fractol->func = 2;
-	else if (ft_strcmp(argv[1], "4th_mandel") == 0)
+	else if (ft_strcmp(argv[1], "3") == 0)
 		fractol->func = 3;
 	else
 	{
-		ft_putstr("usage: ./fractol [julia, mandelbrot, mandelbrot_4]\n");
+		ft_putstr("usage: ./fractol [fractal name]\n"
+			"		Mandlebrot set : 1\n"
+			"		julia set : 2 [real constant(op)] [imaginary constant(op)]\n"
+			"		4th_mandel : 3\n");
 		exit(1);
 	}
 	return (0);
@@ -46,7 +52,7 @@ int	main(int argc, char **argv)
 	fractol->image->addr = mlx_get_data_addr(fractol->image->img,
 			&fractol->image->bits_per_pixel,
 			&fractol->image->line_length, &fractol->image->endian);
-	init_cords(fractol);
+	init_cords(fractol, argv);
 	mlx_hook(fractol->win, 4, 0, mouse_press, fractol);
 	mlx_hook(fractol->win, 2, 0, botton_press, fractol);
 	mlx_hook(fractol->win, 17, 0, close_window, fractol);
