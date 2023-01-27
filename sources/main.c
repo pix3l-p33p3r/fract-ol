@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:28:43 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/25 22:38:25 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:33:37 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 	fractol->image->addr = mlx_get_data_addr(fractol->image->img,
 			&fractol->image->bits_per_pixel,
 			&fractol->image->line_length, &fractol->image->endian);
+	fractol->color = 0;
 	init_cords(fractol, argv);
 	mlx_hook(fractol->win, 4, 0, mouse_press, fractol);
 	mlx_hook(fractol->win, 2, 0, botton_press, fractol);

@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 09:57:01 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/25 22:23:23 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:40:02 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,24 @@ int	select_fractol(t_fractol *fractol, double x, double y)
 	return (0);
 }
 
+void	render_colors(t_fractol *fractol, t_render render)
+{
+	if (render.i < MAX_ITER)
+	{
+		if (fractol->color)
+			my_mlx_pixel_put(fractol, render.a, render.b,
+				render.i * fractol->color);
+		else
+			my_mlx_pixel_put(fractol, render.a, render.b,
+				get_color(render.i % 45));
+	}
+	else
+		my_mlx_pixel_put(fractol, render.a, render.b, 0);
+}
+
 void	mlx_render(t_fractol *fractol, t_render render)
 {
+	mlx_clear_window(fractol->mlx, fractol->win);
 	while (render.a < 1000)
 	{
 		render.x = (((render.a / 1000.0)
@@ -46,11 +62,7 @@ void	mlx_render(t_fractol *fractol, t_render render)
 						* (fractol->plan.y_max - fractol->plan.y_min))
 					+ fractol->plan.y_max);
 			render.i = select_fractol(fractol, render.x, render.y);
-			if (render.i < MAX_ITER)
-				my_mlx_pixel_put(fractol, render.a, render.b,
-					get_color(render.i % 45));
-			else
-				my_mlx_pixel_put(fractol, render.a, render.b, 0);
+			render_colors(fractol, render);
 			render.b++;
 		}
 		render.a++;

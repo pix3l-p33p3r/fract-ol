@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mallaoui <mallaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 09:45:29 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/23 12:38:41 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/26 01:47:08 by mallaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ int	botton_press(int botton, t_fractol *fractol)
 
 	g = ((fractol->plan.x_max - fractol->plan.x_min) / 10.0)
 		* (-2.0 * (botton == 123 || botton == 125) + 1.0);
+	if (botton == 15)
+		fractol->color = 256 * 256 * 265;
+	if (botton == 11)
+		fractol->color = 265;
+	if (botton == 5)
+		fractol->color = 2 * 259 * 256;
 	if (botton == 123 || botton == 124)
 	{
 		fractol->plan.x_min += g;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mallaoui <mallaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:43:13 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/25 22:24:44 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/26 01:48:46 by mallaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,6 @@ typedef struct s_julia {
 	int			iter;
 }				t_julia;
 
-typedef struct s_fractol {
-	int				func;
-	void			*mlx;
-	void			*win;
-	t_image			*image;
-	t_julia			julia;
-	t_plan			plan;
-}	t_fractol;
-
 typedef struct s_render {
 	long double	x;
 	long double	y;
@@ -62,6 +53,17 @@ typedef struct s_mandel {
 	long double	tmp;
 	int			iter;
 }				t_mandel;
+
+typedef struct s_fractol {
+	int				color;
+	int				func;
+	void			*mlx;
+	void			*win;
+	t_image			*image;
+	t_julia			julia;
+	t_plan			plan;
+	t_mandel		iter;
+}	t_fractol;
 
 typedef struct s_mandelbrot_4 {
 	long double	re;
