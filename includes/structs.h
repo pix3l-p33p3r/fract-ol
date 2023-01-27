@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mallaoui <mallaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 14:43:13 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/26 01:48:46 by mallaoui         ###   ########.fr       */
+/*   Updated: 2023/01/28 00:08:42 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# define MAX_ITER 256
+# define MAX_ITER 100
 
 typedef struct s_image {
 	void	*img;

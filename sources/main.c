@@ -6,7 +6,7 @@
 /*   By: elel-yak <elel-yak@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:28:43 by elel-yak          #+#    #+#             */
-/*   Updated: 2023/01/27 15:33:37 by elel-yak         ###   ########.fr       */
+/*   Updated: 2023/01/28 00:04:31 by elel-yak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	pars(int argc, char **argv, t_fractol *fractol)
 	{
 		ft_putstr("usage: ./fractol [fractal name]\n"
 			"		Mandlebrot set : 1\n"
-			"		julia set : 2 [real constant(op)] [imaginary constant(op)]\n"
+			"		julia set : 2 [imaginary constant(op)] [real constant(op)]\n"
 			"		4th_mandel : 3\n");
 		exit(1);
 	}
@@ -32,7 +32,7 @@ int	pars(int argc, char **argv, t_fractol *fractol)
 	{
 		ft_putstr("usage: ./fractol [fractal name]\n"
 			"		Mandlebrot set : 1\n"
-			"		julia set : 2 [real constant(op)] [imaginary constant(op)]\n"
+			"		julia set : 2 [imaginary constant(op)] [real constant(op)]\n"
 			"		4th_mandel : 3\n");
 		exit(1);
 	}
