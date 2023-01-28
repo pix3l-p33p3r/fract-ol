@@ -27,7 +27,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
-	rm -f $(OBJ) $(BNS_OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
