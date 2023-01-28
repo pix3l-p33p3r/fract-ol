@@ -1,7 +1,7 @@
 NAME = fractol
 
 CFLAGS	= -Wall -Werror -Wextra
-CFLAGS += -O2 -g3 -fsanitize=address
+CFLAGS += -O3 -g3 -fsanitize=address
 CC	= cc
 
 SRCS    = sources/main.c \
